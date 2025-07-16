@@ -1,15 +1,15 @@
-
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy, doc } from "firebase/firestore";
 
+// Anahtarları doğrudan yazmak yerine, .env dosyasından güvenli bir şekilde alıyoruz.
 const firebaseConfig = {
-  apiKey: "AIzaSyA3xzxLqlatmHj488c0i_l1HQI_7CjawH8",
-  authDomain: "otobotlar-arsivi.firebaseapp.com",
-  projectId: "otobotlar-arsivi",
-  storageBucket: "otobotlar-arsivi.appspot.com",
-  messagingSenderId: "731429502087",
-  appId: "1:731429502087:web:7863cd8b6e79dfa8f88c22",
-  measurementId: "G-ED6YGHT04R"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
