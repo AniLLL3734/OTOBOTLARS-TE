@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Otobotlar Arşivi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'dark-anthracite': '#121212',
+            'cyber-purple': '#9D00FF',
+            'metallic-gray': '#708090',
+            'light-gray': '#EAEAEA',
+          },
+          fontFamily: {
+            'orbitron': ['Orbitron', 'sans-serif'],
+            'inter': ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'background-pan': 'backgroundPan 15s linear infinite',
+            'glimmer': 'glimmer 1.5s infinite ease-in-out',
+          },
+          keyframes: {
+            backgroundPan: {
+                '0%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' },
+                '100%': { backgroundPosition: '0% 50%' },
+            },
+            glimmer: {
+                '0%, 100%': { opacity: '0.5' },
+                '50%': { opacity: '1' },
+            }
+          },
+          perspective: {
+            '1000': '1000px',
+          },
+          backfaceVisibility: {
+            'hidden': 'hidden',
+          },
+          transformStyle: {
+             'preserve-3d': 'preserve-3d',
+          },
+        }
+      }
+    }
+    </script>
+    <style>
+      body {
+        background-color: #121212;
+      }
+      .perspective-1000 { perspective: 1000px; }
+      .preserve-3d { transform-style: preserve-3d; }
+      .backface-hidden { backface-visibility: hidden; }
+      .rotate-y-180 { transform: rotateY(180deg); }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.6.3",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.6",
+    "firebase/": "https://esm.sh/firebase@^11.10.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
