@@ -52,7 +52,7 @@ const Header: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     <NavLink to="/" className="text-2xl font-orbitron font-bold text-light-gray tracking-tighter">
-                        OTOBOTLAR
+                        OTOBOTLAR8/E
                     </NavLink>
                     <nav className="hidden md:flex items-center space-x-8">
                         {navLinks.map((link) => (
