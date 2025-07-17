@@ -280,6 +280,13 @@ export const efsaneFotograflar: Fotograf[] = [
         aciklama: 'Kader ağlarını ellerine çizmiş bu iki yoldaş, o gün şehri değilse bile, en azından günü kurtarmaya hazırdı. Bu, gücün kalıcılığında değil, dostluğun ve bir anlık eğlencenin yaratıcılığında gizli olduğunun kanıtıdır. Unutmayın, büyük güçler büyük sorumluluklar getirir... tabii bir kalıp sabunla karşılaşana dek.',
         gorsel: '/images/galeri/fotograf.jpg',
     },
+    {
+        id: 'fotograf-008',
+        baslik: 'anil_37k_fan',
+        tarih: 'Fan Hesabının Kim Olduğunu Hala Bulamadım',
+        aciklama: 'o7 Sana anil_37k_fan',
+        gorsel: '/images/galeri/anil_37k_fan',
+    },
     // Buraya istediğiniz kadar fotoğraf ekleyebilirsiniz.
     // Yapı: { id, baslik, tarih, aciklama, gorsel }
 ];
