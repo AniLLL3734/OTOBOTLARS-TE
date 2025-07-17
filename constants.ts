@@ -285,7 +285,7 @@ export const efsaneFotograflar: Fotograf[] = [
         baslik: 'anil_37k_fan',
         tarih: 'Fan Hesabının Kim Olduğunu Hala Bulamadım',
         aciklama: 'o7 Sana anil_37k_fan',
-        gorsel: '/images/galeri/anil_37k_fan',
+        gorsel: '/images/galeri/anil_37k_fan.jpg',
     },
     // Buraya istediğiniz kadar fotoğraf ekleyebilirsiniz.
     // Yapı: { id, baslik, tarih, aciklama, gorsel }
