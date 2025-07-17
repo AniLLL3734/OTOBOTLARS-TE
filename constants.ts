@@ -287,6 +287,13 @@ export const efsaneFotograflar: Fotograf[] = [
         aciklama: 'o7 Sana anil_37k_fan',
         gorsel: '/images/galeri/anil_37k_fan.jpg',
     },
+    {
+        id: 'fotograf-009',
+        baslik: 'Kapının Bekçileri',
+        tarih: 'Henüz hangi tarafta olunduğuna karar verilmeyen o kritik an.',
+        aciklama: 'Her ekibin bir karargahı, her kalenin bir kapısı vardır. Bu, o kapının önünde toplanmış konseyin bir gece ansızın çekilmiş tarihi kanıtıdır. Parmaklıkların ardındaki sadık muhafız, gözlüklü neşeli stratejist ve gecenin sırlarına vakıf diğer üyeler... Ya bilinmeyen diyarlara açılan bir geçidi koruyorlardı ya da sadece sitenin çıkış kapısında "içeride mi kalsak, dışarı mı çıksak?" diye düşünüyorlardı. Hayatta bazen en önemli kararlar, en basit yerlerde verilir.',
+        gorsel: '/images/galeri/ekip.jpg',
+    },
     // Buraya istediğiniz kadar fotoğraf ekleyebilirsiniz.
     // Yapı: { id, baslik, tarih, aciklama, gorsel }
 ];
