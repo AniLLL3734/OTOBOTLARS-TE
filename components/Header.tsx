@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -7,6 +6,8 @@ const navLinks = [
     { name: 'Ana Sayfa', path: '/' },
     { name: 'Olaylar', path: '/olaylar' },
     { name: 'Mini Oyunlar', path: '/mini-oyunlar' },
+    // YENİ EKLENEN SATIR
+    { name: 'Efsane Fotoğraflar', path: '/efsane-fotograflar' }, 
     { name: 'Sohbet', path: '/sohbet' },
     { name: 'İletişim', path: '/iletisim' },
 ];

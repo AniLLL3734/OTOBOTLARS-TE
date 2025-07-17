@@ -1,5 +1,7 @@
+// src/constants.ts
 import type { Olay } from './types';
 
+// 1. MEVCUT OLAYLAR VERİNİZ (Hiçbir değişiklik yapılmadı)
 export const olaylar: Olay[] = [
     {
         id: 'limonlu-buz-trajedisi',
@@ -102,7 +104,7 @@ Ve böylece Akif’in hikayesi, bir fısıltı olarak başlayıp, asla unutulmay
         gorsel: '/images/saat-sekiz-doksan-dokuz.jpg',
         icerik: `**Perde 1: Kozmosun Fısıltısı**
 Her şey, bir sabah, evrenin en sıradan görünen köşelerinden birinde, Yusuf Kocabaş’ın odasında başladı. O, uyku denen o tatlı sürgünden döndüğünde, başucundaki dijital kâhin, yani alarmı, ona evrenin en mahrem sırlarından birini fısıldadı: Saat 8:99'du.
-Bu bir hata değildi. Bu, zamanın kendi dokusunda açılmış bir gedikti. 60 dakikalık tiranlığın son bulduğu, imkansız bir anın doğduğu o saniyede Yusuf, gözlerini açtı. Beyninde tek bir hakikat şimşek gibi çaktı: Geç kalmak artık basit bir eylem değil, varoluşsal bir durumdu. Pijamaları, yani rüyalarının son giysisi hâlâ üzerindeyken yataktan fırladı. Bu, panik değil, bir aydınlanmaydı. "Hoca bekler…" Bu düşünce, bir mantra gibi zihninde dönüyordu.
+Bu bir hata değildi. Bu, zamanın kendi dokusunda açılmış bir gedikti. 60 dakikalık tiranlığın son bulduğu, imkansız bir anın doğduğu o saniyede Yusuf, gözlerini açtı. Beyninde tek bir hakikat şimşek gibi çaktı: Geç kalmak artık basit bir eylem değil, varoluşsal bir durumdu. Pijamaları, yani rüyalarının son giysisi hâlâ üzerindeyken yataktan fırladı. Bu, bir panik değil, bir aydınlanmaydı. "Hoca bekler…" Bu düşünce, bir mantra gibi zihninde dönüyordu.
 
 **Perde 2: Kaostan Doğan Yolculuk**
 Odası, dünün savaşlarından kalma oyuncaklardan, yarıda bırakılmış kitaplardan ve boş tabaklardan oluşan bir labirentti. Yusuf, bu kutsal karmaşanın içinden tek bir çorapla, dengesizliğin ve acelenin yaşayan bir anıtı olarak geçti. Tam o sırada, mutfak denen o paralel evrenden annesinin sesi, bir siren şarkısı gibi ona ulaştı: “Yusuf, o mide nereye boş gidiyor böyle?”
@@ -216,4 +218,73 @@ Biz, o geceden geriye, soğuk bir bankın, yarım kalmış bir sohbetin ve tam z
     }
 ];
 
+// ---------------- YENİ ALAN ----------------
+
+// Fotoğraf verileri için tip tanımı (Olay tipi gibi)
+interface Fotograf {
+    id: string;
+    baslik: string;
+    tarih: string;
+    aciklama: string;
+    gorsel: string;
+}
+
+// 2. YENİ EKLENEN FOTOĞRAFLAR VERİSİ
+export const efsaneFotograflar: Fotograf[] = [
+    {
+        id: 'fotograf-001',
+        baslik: 'Büyük Mısır Pazarlığı',
+        tarih: 'Büyük Mısır Zirvesinin hararetli geçtiği bir yaz akşamı.',
+        aciklama: 'Tarih, Büyük Mısır Zirvesinin en hararetli geçtiği bir yaz akşamını gösteriyor. Sol taraftaki delege, mısırın tane-tuz oranına dair kritik taleplerini sunarken, tezgahın ardındaki bilge lider, soğukkanlı bir gülümsemeyle diplomasi yürütüyor. Dünya barışı belki sağlanamadı ama o akşam en azından bir bardak mükemmel mısır için uzlaşmaya varıldı. Bu da bir tür zaferdir.',
+        gorsel: '/images/galeri/ziyafet.jpg', // Örnek yol, public/images/galeri/ altındaki kendi fotoğrafınızın yolunu yazın
+    },
+    {
+        id: 'fotograf-002',
+        baslik: 'Gecenin Sessiz Gözcüsü',
+        tarih: 'Evrenin sırlarının en çok sorgulandığı o saatler.',
+        aciklama: 'Şehir uykuya daldığında, ışıklar birer birer söndüğünde, bazı ruhlar düşünceleriyle baş başa kalır. O, neyi beklediğini veya neyi aradığını sadece kendisinin bildiği bir bekleyiştir. Belki de evrenin sırlarını çözmeye çalışıyordur, belki de sadece "acaba yarın ne giysem?" diye düşünüyordur. Gecenin derinliği, en büyük soruları ve en basit cevapları aynı anda barındırır.',
+        gorsel: '/images/galeri/sessizgözcü.jpg',
+    },
+    {
+        id: 'fotograf-003',
+        baslik: 'Özgürlüğün Serin Yüzü',
+        tarih: 'Özgürlüğün bile sıcaktan bunaldığı o öğleden sonra.',
+        aciklama: 'Tarih, özgürlüğün bile sıcaktan bunaldığı bir öğleden sonrayı gösteriyordu. Meşhur meşale, aydınlatma görevine kısa bir ara verip, insanlığa asıl ihtiyacı olan şeyi sunmaya karar vermişti: buz gibi bir ferahlık. Bu, ideallerin en hararetli anlarda bile bir dilim limonla serinleyebileceğinin en taze kanıtıdır.',
+        gorsel: '/images/galeri/ozgurluk.jpg',
+    },
+    {
+        id: 'fotograf-003',
+        baslik: 'Gece Meclisi Toplandı',
+        tarih: 'Gecenin en verimli, aynı zamanda en uykulu anları.',
+        aciklama: 'Büyük kararlar, parlak ofislerde değil, işte tam da böyle ahşap bir masanın etrafında, dünyanın geri kalanı uyurken alınır. Bu meclis ya insanlığın geleceğini şekillendiriyor ya da masaya dökülenleri nasıl temizleyeceklerini tartışıyor. Gecenin bu en verimli ve bir o kadar uykulu saatlerinde, iki ihtimalin de önemi eşittir.',
+        gorsel: '/images/galeri/meclis.jpg',
+    },
+    {
+        id: 'fotograf-003',
+        baslik: 'Yerçekimiyle Dans',
+        tarih: 'Yer çekimi kanununun kısa bir mola verdiği o nadir an.',
+        aciklama: ' Tarih, yer çekimi kanununun kısa bir mola verdiği o nadir anı işaret ediyor. Hayatın karmaşık ağlarında tırmanırken bazen kurallar esner, fizik yasaları bile bir anlığına gözlerini yumar. Bu iki kaşif, varoluşun ağırlığına meydan okurken aslında tek bir şeyi ispatlıyor: En iyi anlar, genellikle mantığın ve yer çekiminin tatilde olduğu anlardır.',
+        gorsel: '/images/galeri/yercekimi.jpg',
+    },
+    {
+        id: 'fotograf-003',
+        baslik: 'Anıception: Başlangıç',
+        tarih: 'Hatıraların hatıraları kaydettiği o gelecek-şimdiki zaman dilimi.',
+        aciklama: 'Bir anın içine başka bir anı hapsetmek, sonra o anıyı da ölümsüzleştirmek... Bu, zaman yolculuğunun en basit ve en kafa karıştırıcı şeklidir. Birkaç yıl sonra bu fotoğrafa bakıp, "O gün telefonun ekranındaki fotoğrafa baktığımız anın fotoğrafını çekmiştik" diyecekler. Ve evet, hayat bu cümle kadar karmaşık ve güzel.',
+        gorsel: '/images/galeri/baslangic.jpg',
+    },
+    {
+        id: 'fotograf-003',
+        baslik: 'Örümcek Kardeşliği Dövme yaptıranlar',
+        tarih: 'Büyük güçlerin, ilk el yıkamaya kadar geçerli olduğu o efsanevi gün.',
+        aciklama: 'Kader ağlarını ellerine çizmiş bu iki yoldaş, o gün şehri değilse bile, en azından günü kurtarmaya hazırdı. Bu, gücün kalıcılığında değil, dostluğun ve bir anlık eğlencenin yaratıcılığında gizli olduğunun kanıtıdır. Unutmayın, büyük güçler büyük sorumluluklar getirir... tabii bir kalıp sabunla karşılaşana dek.',
+        gorsel: '/images/galeri/fotograf.jpg',
+    },
+    // Buraya istediğiniz kadar fotoğraf ekleyebilirsiniz.
+    // Yapı: { id, baslik, tarih, aciklama, gorsel }
+];
+
+// ------------------------------------------
+
+// 3. MEVCUT OYUN SEMBOLLERİNİZ (Hiçbir değişiklik yapılmadı)
 export const OYUN_SEMBOLERI = ['👻', '👽', '🔮', '💀', '🦇', '🎃', '🕷️', '🛸'];

@@ -1,3 +1,4 @@
+// App.tsx DOSYASININ DOĞRU HALİ
 
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
@@ -12,6 +13,10 @@ import ChatPage from './pages/ChatPage';
 import MiniGamesPage from './pages/MiniGamesPage';
 import ContactPage from './pages/ContactPage';
 
+// DOĞRU İSİM VE YOL İLE SAYFALARI IMPORT ETME
+import EfsaneFotograflar from './pages/EfsaneFotograflar'; 
+import FotografDetayPage from './pages/FotografDetayPage';
+
 const AppRoutes = () => {
     const location = useLocation();
     return (
@@ -22,6 +27,11 @@ const AppRoutes = () => {
                 <Route path="/olay/:id" element={<EventDetailPage />} />
                 <Route path="/sohbet" element={<ChatPage />} />
                 <Route path="/mini-oyunlar" element={<MiniGamesPage />} />
+                
+                {/* DOĞRU BİLEŞENLERLE ROTALAR */}
+                <Route path="/efsane-fotograflar" element={<EfsaneFotograflar />} />
+                <Route path="/fotograf/:id" element={<FotografDetayPage />} />
+                
                 <Route path="/iletisim" element={<ContactPage />} />
             </Routes>
         </AnimatePresence>
@@ -32,7 +42,7 @@ const App: React.FC = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 2500); // Simulate loading time
+        const timer = setTimeout(() => setLoading(false), 2500);
         return () => clearTimeout(timer);
     }, []);
 
