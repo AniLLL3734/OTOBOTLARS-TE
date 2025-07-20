@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -7,7 +6,7 @@ import AnimatedPage from '../components/AnimatedPage';
 const HomePage: React.FC = () => {
     return (
         <AnimatedPage>
-            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] text-center">
+            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] text-center px-4">
                 <motion.h1
                     className="text-5xl md:text-7xl lg:text-8xl font-orbitron font-black uppercase tracking-wider text-light-gray"
                     initial={{ opacity: 0, y: -50 }}
@@ -16,6 +15,7 @@ const HomePage: React.FC = () => {
                 >
                     <span className="text-cyber-purple">Otobotlar</span> Arşivi
                 </motion.h1>
+
                 <motion.p
                     className="mt-4 max-w-2xl text-lg md:text-xl text-metallic-gray font-inter"
                     initial={{ opacity: 0 }}
@@ -24,16 +24,25 @@ const HomePage: React.FC = () => {
                 >
                     Gerçekliğin sınırlarında gezinen, açıklanamayan ve kaydedilen anıların siber-mistik kasası.
                 </motion.p>
+
                 <motion.div
+                    className="mt-12 flex flex-col sm:flex-row gap-6 items-center"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.8, ease: 'backOut' }}
                 >
                     <Link
                         to="/olaylar"
-                        className="mt-12 inline-block px-10 py-4 font-orbitron text-lg text-light-gray uppercase tracking-widest bg-cyber-purple/20 border-2 border-cyber-purple rounded-md transition-all duration-300 hover:bg-cyber-purple hover:text-dark-anthracite hover:shadow-[0_0_20px_theme(colors.cyber-purple)]"
+                        className="w-full sm:w-auto inline-block px-10 py-4 font-orbitron text-lg text-light-gray uppercase tracking-widest bg-cyber-purple/20 border-2 border-cyber-purple rounded-md transition-all duration-300 hover:bg-cyber-purple hover:text-dark-anthracite hover:shadow-[0_0_20px_theme(colors.cyber-purple)]"
                     >
                         Arşivi Keşfet
+                    </Link>
+
+                    <Link
+                        to="/olay-ekle" 
+                        className="w-full sm:w-auto inline-block px-10 py-4 font-orbitron text-lg text-light-gray uppercase tracking-widest bg-green-500/20 border-2 border-green-500 rounded-md transition-all duration-300 hover:bg-green-500 hover:text-dark-anthracite hover:shadow-[0_0_20px_theme(colors.green.500)]"
+                    >
+                        Anı Ekle
                     </Link>
                 </motion.div>
             </div>

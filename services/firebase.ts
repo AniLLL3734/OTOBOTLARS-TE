@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy, doc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy, doc, deleteDoc } from "firebase/firestore";
+// YENİ: Firebase Storage için gerekli importlar
+import { getStorage } from "firebase/storage";
 
 // Anahtarları doğrudan yazmak yerine, .env dosyasından güvenli bir şekilde alıyoruz.
 const firebaseConfig = {
@@ -14,5 +16,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+// YENİ: Storage servisini başlat ve export et
+const storage = getStorage(app);
 
-export { db, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy, doc };
+// YENİ: deleteDoc'u da export ediyoruz, onay sonrası silmek için gerekecek
+export { db, storage, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy, doc, deleteDoc };
