@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "browser-image-compression": "^2.0.2",
     "firebase": "^11.10.0",
     "framer-motion": "^12.23.6",
     "react": "^19.1.0",
