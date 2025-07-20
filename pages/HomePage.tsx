@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <span className="text-cyber-purple">Otobotlar</span> Arşivi
+                    <span className="text-cyber-purple">Otobotlar8/E</span> Arşivi
                 </motion.h1>
                 <motion.p
                     className="mt-4 max-w-2xl text-lg md:text-xl text-metallic-gray font-inter"
