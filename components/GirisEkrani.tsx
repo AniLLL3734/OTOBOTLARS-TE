@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedPage from './AnimatedPage';
+import { useAuth } from '../contexts/AuthContext'; // Auth hook'unu import et
 
-interface GirisEkraniProps {
-  // YENİ: Başarılı girişte kullanıcı adını da göndereceğiz.
-  onGirisBasarili: (kullaniciAdi: string) => void;
-}
-
-const GirisEkrani: React.FC<GirisEkraniProps> = ({ onGirisBasarili }) => {
-  const [cevap, setCevap] = useState('');
-  const [hata, setHata] = useState<string | null>(null);
+// Bu bileşen artık dışarıdan prop almıyor.
+const GirisEkrani: React.FC = () => {
+  const { login } = useAuth(); // login fonksiyonunu doğrudan context'ten al
   
-  // YENİ: Kullanıcı adını tutmak için yeni state.
+  const [cevap, setCevap] = useState('');
   const [kullaniciAdi, setKullaniciAdi] = useState('');
+  const [hata, setHata] = useState<string | null>(null);
   
   const dogruCevap = "ayşe karakoyun";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!kullaniciAdi.trim()) {
-        setHata("Lütfen bir kullanıcı adı gir.");
+    const trimmedKullaniciAdi = kullaniciAdi.trim();
+    
+    if (!trimmedKullaniciAdi) {
+        setHata("Lütfen bir çağrı işareti (adın) gir.");
         return;
     }
 
     if (cevap.trim().toLowerCase() === dogruCevap) {
-      onGirisBasarili(kullaniciAdi.trim());
+      // Doğrudan merkezi 'login' fonksiyonunu çağırıyoruz.
+      login(trimmedKullaniciAdi);
     } else {
-      setHata("Güvenlik sorusunun cevabı yanlış.");
+      setHata("Güvenlik anahtarı yanlış.");
       setCevap('');
     }
   };
@@ -98,7 +97,7 @@ const GirisEkrani: React.FC<GirisEkraniProps> = ({ onGirisBasarili }) => {
           
           {hata && (
             <motion.p
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
               className="mt-2 text-red-400 font-inter"
             >
               {hata}
