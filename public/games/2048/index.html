@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <!-- Mobil uyumluluk için en önemli etiket! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Tek CSS dosyasına bağlantı -->
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="shortcut icon" href="./favicon.ico">
+    <title>Otobot 2048</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1 class="title">Otobot 2048</h1>
+            <div class="scores-container">
+                <div class="score-container">
+                    <p class="title">SKOR</p>
+                    <p class="score">0</p>
+                    <div class="score-addition"></div>
+                </div>
+                <div class="best-container">
+                    <p class="title">EN YÜKSEK</p>
+                    <p class="score">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="game-intro">
+             <a href="#" class="restart-btn">Yeni Oyun</a>
+             <p class="above-game">
+                Sayıları birleştirerek <strong>2048</strong>'e ulaş!
+            </p>
+        </div>
+        <div class="game-container">
+            <div class="grid-container">
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+            </div>
+            <div class="tile-container">
+
+            </div>
+            <div class="failure-container pop-container">
+                <p>Oyun Bitti!</p>
+                <a href="#" class="restart-btn">Tekrar Dene</a>
+            </div>
+            <div class="winning-container pop-container">
+                <p>Kazandın!</p>
+                 <a href="#" class="restart-btn">Yeni Oyun</a>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Yapımcı: Anıl. Otobot armağanıdır.</span>
+        </div>
+    </div>
+    
+    <!-- JavaScript dosyaları -->
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/event.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+/* FONT TANIMLAMASI */
+@font-face {
+    font-family: "Clear Sans";
+    src: url("../font/ClearSans-Regular-webfont.woff");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Clear Sans";
+    src: url("../font/ClearSans-Bold-webfont.woff");
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* DEĞİŞKENLER VE TEMEL STİLLER */
+:root {
+    --bg-color: #121212;
+    --primary-text: #e0e0e0;
+    --secondary-text: #b3b3b3;
+    --board-bg: #1c1c1c;
+    --cell-bg: #3a3a3a;
+    --purple-accent: #9b59b6;
+    --purple-hover: #8e44ad;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    color: var(--primary-text);
+    background: var(--bg-color);
+    overflow-x: hidden;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.container {
+    padding: 20px 15px; /* Yan boşluklar daraltıldı */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    min-height: 100vh;
+}
+
+/* BAŞLIK VE SKOR ALANI */
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Küçük ekranlarda sığmazsa alt satıra indir */
+}
+
+h1.title {
+    font-size: 3.5rem; /* Boyut ayarlandı */
+    font-weight: bold;
+    color: var(--purple-accent);
+}
+
+.scores-container {
+    display: flex;
+    gap: 8px;
+}
+
+.score-container, .best-container {
+    padding: 8px 15px;
+    background: var(--board-bg);
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 85px;
+}
+
+.score-container .title, .best-container .title {
+    font-size: 13px;
+    color: var(--secondary-text);
+}
+
+.score-container .score, .best-container .score {
+    font-size: 24px;
+    color: white;
+}
+
+/* OYUN KONTROLLERİ */
+.game-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.above-game {
+    font-size: 1rem;
+    color: var(--secondary-text);
+}
+
+.restart-btn {
+    padding: 10px 18px;
+    background: var(--purple-accent);
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    white-space: nowrap; /* "Yeni Oyun" yazısının bölünmesini engeller */
+}
+.restart-btn:hover, .restart-btn:active {
+    background: var(--purple-hover);
+    transform: translateY(-2px);
+}
+
+/* OYUN ALANI */
+.game-container {
+    position: relative;
+    padding: 10px;
+    background: var(--board-bg);
+    border-radius: 6px;
+    touch-action: none;
+    aspect-ratio: 1 / 1; /* Oyun alanının kare kalmasını sağlar */
+    width: 100%;
+}
+
+.grid-container, .tile-container {
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+}
+
+.grid-row {
+    display: flex;
+    height: calc(25% - 7.5px); /* Boşlukları hesaba katar */
+    margin-bottom: 10px;
+}
+.grid-row:last-child { margin-bottom: 0; }
+.grid-cell {
+    width: calc(25% - 7.5px);
+    background: var(--cell-bg);
+    border-radius: 4px;
+    margin-right: 10px;
+}
+.grid-cell:last-child { margin-right: 0; }
+
+/* SAYI KUTULARI (TILES) */
+.tile {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(25% - 7.5px);
+    height: calc(25% - 7.5px);
+    font-size: 2.8rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.1s ease-in-out;
+    color: #f9f6f2;
+}
+
+.tile[data-val="2"] { background: #5a6a7e; }
+.tile[data-val="4"] { background: #6e7c8e; }
+.tile[data-val="8"] { background: #b185a7; }
+.tile[data-val="16"] { background: #9b59b6; }
+.tile[data-val="32"] { background: #8e44ad; }
+.tile[data-val="64"] { background: #c0392b; }
+.tile[data-val="128"] { background: #d35400; font-size: 2.4rem; }
+.tile[data-val="256"] { background: #e67e22; font-size: 2.4rem; }
+.tile[data-val="512"] { background: #f39c12; font-size: 2.4rem; }
+.tile[data-val="1024"] { background: #16a085; font-size: 2rem; }
+.tile[data-val="2048"] { background: #27ae60; font-size: 2rem; animation: pulse-2048 1s infinite alternate; }
+
+/* BİLDİRİM EKRANLARI */
+.pop-container {
+    position: absolute; top: 0; left: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 20px; width: 100%; height: 100%;
+    background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(5px);
+    z-index: 100; opacity: 0; visibility: hidden; transition: all 0.5s ease;
+}
+.pop-container.action { opacity: 1; visibility: visible; }
+.pop-container p {
+    font-size: 3rem; font-weight: bold; color: white;
+    animation: fadeInSlideUp 0.5s ease-out 0.2s backwards;
+}
+.pop-container .restart-btn { animation: fadeInSlideUp 0.5s ease-out 0.4s backwards; }
+
+/* ALT BİLGİ */
+.footer {
+    flex-grow: 1; padding: 20px 0 10px 0; text-align: center;
+    display: flex; justify-content: center; align-items: flex-end;
+    font-size: 0.9rem; color: var(--secondary-text);
+}
+
+/* ---- ANİMASYONLAR ---- */
+.score-addition { position: absolute; right: 15px; color: #4caf50; z-index: 100; opacity: 0; font-size: 20px; font-weight: bold; }
+.score-addition.action { animation: moveup 0.8s ease-out; }
+.tile.new-tile { animation: appear 0.2s ease-out; }
+.tile.addition { animation: addition 0.3s ease; }
+@keyframes moveup { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-40px); opacity: 0; } }
+@keyframes appear { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+@keyframes addition { 0% { transform: scale(1); } 50% { transform: scale(1.2); box-shadow: 0 0 15px var(--purple-accent); } 100% { transform: scale(1); } }
+@keyframes pulse-2048 { from { box-shadow: 0 0 0px #27ae60; } to { box-shadow: 0 0 30px #27ae60; } }
+@keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---- MOBİL UYUMLULUK (Responsive Tasarım) ---- */
+@media screen and (max-width: 500px) {
+    body { font-size: 14px; }
+    h1.title { font-size: 2.8rem; }
+    .above-game { font-size: 0.9rem; }
+    
+    .tile { font-size: 1.8rem; } /* Karo içindeki yazı boyutları küçültüldü */
+    .tile[data-val="128"],
+    .tile[data-val="256"],
+    .tile[data-val="512"] { font-size: 1.5rem; }
+    .tile[data-val="1024"],
+    .tile[data-val="2048"] { font-size: 1.2rem; }
+    
+    .pop-container p { font-size: 2.5rem; }
+}
+
+@media screen and (max-width: 360px) {
+    h1.title { font-size: 2.2rem; }
+    .tile { font-size: 1.5rem; } /* En küçük ekranlar için yazı boyutları daha da küçültüldü */
+    .tile[data-val="128"],
+    .tile[data-val="256"],
+    .tile[data-val="512"] { font-size: 1.2rem; }
+    .tile[data-val="1024"],
+    .tile[data-val="2048"] { font-size: 1rem; }
+}
