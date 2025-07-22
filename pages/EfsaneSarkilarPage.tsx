@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import { FiVolume2, FiPlusCircle } from 'react-icons/fi';
 
-// Şarkı verisi için bir tür (type) tanımlayalım
+// Şarkı verisi için tür tanımı
 interface Song {
     id: number;
     title: string;
@@ -11,7 +11,7 @@ interface Song {
     file: string;
 }
 
-// Sayfanın giriş animasyonu için
+// Sayfa geçiş animasyonu
 const pageVariants = {
     initial: { opacity: 0, y: 20 },
     in: { opacity: 1, y: 0 },
@@ -26,13 +26,13 @@ const EfsaneSarkilarPage: React.FC = () => {
     const [volume, setVolume] = useState(0.7);
     const [boost, setBoost] = useState(1);
     
-    // Web Audio API için referanslar
+    // Ses elementleri için referanslar
     const audioRef = useRef<HTMLAudioElement>(null);
     const audioContextRef = useRef<AudioContext | null>(null);
     const gainNodeRef = useRef<GainNode | null>(null);
     const trackRef = useRef<MediaElementAudioSourceNode | null>(null);
 
-    // Şarkı listesini sarkilar.json dosyasından çekiyoruz
+    // Başlangıçta şarkı listesini JSON dosyasından yükle
     useEffect(() => {
         fetch('/sarkilar.json')
             .then(response => response.json())
@@ -40,37 +40,22 @@ const EfsaneSarkilarPage: React.FC = () => {
             .catch(error => console.error("Şarkılar yüklenemedi:", error));
     }, []);
 
-    // Web Audio API kurulumu. Bu, Volume Boost için gereklidir.
+    // Volume Boost için gerekli olan Web Audio API kurulumu
     const setupAudioContext = useCallback(() => {
         if (audioRef.current && !audioContextRef.current) {
             const context = new (window.AudioContext || (window as any).webkitAudioContext)();
             const gainNode = context.createGain();
             const track = context.createMediaElementSource(audioRef.current);
-
             track.connect(gainNode).connect(context.destination);
-
             audioContextRef.current = context;
             gainNodeRef.current = gainNode;
             trackRef.current = track;
-            
-            updateGain();
-        }
-    }, []);
-
-    // Ses seviyesini ve boost'u güncelleyen fonksiyon
-    const updateGain = useCallback(() => {
-        if (gainNodeRef.current) {
-            gainNodeRef.current.gain.value = volume * boost;
+            gainNode.gain.value = volume * boost;
         }
     }, [volume, boost]);
 
-    useEffect(() => {
-        updateGain();
-    }, [updateGain]);
-
-    // Oynatma/Duraklatma fonksiyonu
-    const togglePlayPause = () => {
-        // Eğer daha önce hiç çalınmadıysa AudioContext'i kur
+    // Oynatma/Duraklatma işlevi
+    const togglePlayPause = useCallback(() => {
         if (!audioContextRef.current) {
             setupAudioContext();
         }
@@ -78,71 +63,107 @@ const EfsaneSarkilarPage: React.FC = () => {
         if (currentSongIndex === null && songs.length > 0) {
             setCurrentSongIndex(0);
             setIsPlaying(true);
+            audioContextRef.current?.resume();
             return;
         }
 
-        const newIsPlaying = !isPlaying;
-        setIsPlaying(newIsPlaying);
-        if (newIsPlaying) {
-            audioContextRef.current?.resume(); // Kullanıcı etkileşiminden sonra Context'i devam ettir
-            audioRef.current?.play();
+        const audio = audioRef.current;
+        if (!audio) return;
+        
+        const currentlyPlaying = !isPlaying;
+        if (currentlyPlaying) {
+            audioContextRef.current?.resume();
+            audio.play();
         } else {
-            audioRef.current?.pause();
+            audio.pause();
         }
-    };
+        setIsPlaying(currentlyPlaying);
+    }, [isPlaying, currentSongIndex, songs.length, setupAudioContext]);
     
-    const playSong = (index: number) => {
+    // Şarkıyı indekse göre başlatan fonksiyon
+    const playSong = useCallback((index: number) => {
         if (!audioContextRef.current) {
             setupAudioContext();
         }
         setCurrentSongIndex(index);
         setIsPlaying(true);
-         // AudioContext'in kullanıcı etkileşimiyle başlamasını sağla
         if (audioContextRef.current?.state === 'suspended') {
             audioContextRef.current.resume();
         }
-    }
+    }, [setupAudioContext]);
 
+    // Sonraki şarkıya geçen fonksiyon
     const playNext = useCallback(() => {
         if (songs.length === 0) return;
-        setCurrentSongIndex(prevIndex => (prevIndex === null || prevIndex === songs.length - 1) ? 0 : prevIndex + 1);
+        setCurrentSongIndex(prev => (prev === null || prev === songs.length - 1) ? 0 : prev + 1);
         setIsPlaying(true);
     }, [songs.length]);
 
-    const playPrev = () => {
+    // Önceki şarkıya geçen fonksiyon
+    const playPrev = useCallback(() => {
         if (songs.length === 0) return;
-        setCurrentSongIndex(prevIndex => (prevIndex === null || prevIndex === 0) ? songs.length - 1 : prevIndex - 1);
+        setCurrentSongIndex(prev => (prev === null || prev === 0) ? songs.length - 1 : prev - 1);
         setIsPlaying(true);
-    };
+    }, [songs.length]);
+    
+    // Ses ve boost seviyesi değiştiğinde sesi güncelleyen hook
+    useEffect(() => {
+        if (gainNodeRef.current) {
+            gainNodeRef.current.gain.value = volume * boost;
+        }
+    }, [volume, boost]);
 
-    // Zaman ve ilerleme çubuğu güncellemeleri
+    // Şarkının zamanı ilerledikçe ilerleme çubuğunu güncelleyen hook
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
-    
         const updateProgress = () => {
-          setProgress((audio.currentTime / audio.duration) * 100);
+            if (audio.duration) {
+                setProgress((audio.currentTime / audio.duration) * 100);
+            }
         };
-        const handleSongEnd = () => playNext();
-    
         audio.addEventListener('timeupdate', updateProgress);
+        return () => {
+            audio.removeEventListener('timeupdate', updateProgress);
+        };
+    }, []);
+
+    // MediaSession API ve şarkı bitince yenisini başlatma hook'u
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        if ('mediaSession' in navigator && currentSongIndex !== null) {
+            const currentSong = songs[currentSongIndex];
+            
+            // Medya bilgilerini ayarla (ARTWORK OLMADAN)
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: currentSong.title,
+                artist: currentSong.artist,
+                album: 'OTOBOTLAR8/E ARŞİVİ',
+            });
+            
+            navigator.mediaSession.setActionHandler('play', togglePlayPause);
+            navigator.mediaSession.setActionHandler('pause', togglePlayPause);
+            navigator.mediaSession.setActionHandler('nexttrack', playNext);
+            navigator.mediaSession.setActionHandler('previoustrack', playPrev);
+        }
+
+        const handleSongEnd = () => playNext();
         audio.addEventListener('ended', handleSongEnd);
     
         return () => {
-          audio.removeEventListener('timeupdate', updateProgress);
           audio.removeEventListener('ended', handleSongEnd);
         };
-    }, [playNext]);
-    
+    }, [currentSongIndex, songs, isPlaying, playNext, playPrev, togglePlayPause]);
+
+    // İlerleme çubuğunda bir yere tıklanmasını yönet
     const handleProgressScrub = (e: React.MouseEvent<HTMLDivElement>) => {
         const audio = audioRef.current;
         if (!audio || !audio.duration) return;
-        
         const rect = e.currentTarget.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
-        const width = rect.width;
-        const percentage = clickX / width;
-        
+        const percentage = clickX / rect.width;
         audio.currentTime = audio.duration * percentage;
     };
 
@@ -156,7 +177,6 @@ const EfsaneSarkilarPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="container mx-auto px-4 py-12 min-h-screen"
         >
-             {/* Görünmez audio elementi */}
             <audio
                 ref={audioRef}
                 src={currentSongIndex !== null ? songs[currentSongIndex].file : ''}
@@ -165,9 +185,7 @@ const EfsaneSarkilarPage: React.FC = () => {
             />
 
             <div className="text-center mb-12">
-                <h1 className="text-5xl font-orbitron font-bold text-light-gray tracking-tighter">
-                    EFSANE ŞARKILAR
-                </h1>
+                <h1 className="text-5xl font-orbitron font-bold text-light-gray tracking-tighter">EFSANE ŞARKILAR</h1>
                 <p className="text-lg text-metallic-gray mt-2">Unutulmaz anların siber-melodik tınıları.</p>
             </div>
             
@@ -196,7 +214,7 @@ const EfsaneSarkilarPage: React.FC = () => {
                     </ul>
                 </div>
                 
-                {/* Müzik Player */}
+                {/* Müzik Çalar Arayüzü */}
                 <div className="md:col-span-2 bg-dark-anthracite/70 border border-metallic-gray/20 rounded-lg p-8 flex flex-col justify-center items-center h-full">
                     {currentSongIndex !== null ? (
                         <>
@@ -205,14 +223,12 @@ const EfsaneSarkilarPage: React.FC = () => {
                                 <p className="text-metallic-gray mt-1">{songs[currentSongIndex].artist}</p>
                             </div>
                             
-                            {/* İlerleme Çubuğu */}
                             <div className="w-full mt-8">
-                                <div onClick={handleProgressScrub} className="bg-metallic-gray/30 rounded-full cursor-pointer h-2">
+                                <div onClick={handleProgressScrub} className="bg-metallic-gray/30 rounded-full cursor-pointer h-2 group">
                                     <div style={{ width: `${progress}%`}} className="bg-cyber-purple h-2 rounded-full"></div>
                                 </div>
                             </div>
                             
-                            {/* Kontroller */}
                             <div className="flex items-center space-x-8 text-light-gray text-3xl my-8">
                                 <button onClick={playPrev} className="hover:text-cyber-purple transition-colors"><FaBackward /></button>
                                 <button onClick={togglePlayPause} className="w-16 h-16 rounded-full bg-cyber-purple text-dark-anthracite flex items-center justify-center text-2xl hover:scale-110 transition-transform">
@@ -221,7 +237,6 @@ const EfsaneSarkilarPage: React.FC = () => {
                                 <button onClick={playNext} className="hover:text-cyber-purple transition-colors"><FaForward /></button>
                             </div>
 
-                            {/* Ses Kontrolleri */}
                             <div className="w-full max-w-xs space-y-4">
                                <div className='flex items-center space-x-3'>
                                     <FiVolume2 className="text-metallic-gray" />
