@@ -458,6 +458,13 @@ const MiniGamesPage: React.FC = () => {
             description: 'Sayıları Birleştirerek 2048 e Ulaşmaya Çalış',
             url: '/games/2048/index.html'
         },
+        {
+  id: 'earntodie2',
+  type: 'html',
+  name: 'Earn to Die 2',
+  description: 'Zombilere karşı arabayla hayatta kal!',
+  url: '/games/earntodie2.swf'
+},
         { id: 'memory', type: 'react', name: 'Mistik Hafıza', description: 'Sembollerin ardındaki sırrı çöz, zihnini test et.', component: <MemoryGame onBack={() => setSelectedGame(null)} /> },
         { id: 'tictactoe', type: 'react', name: 'X-O Savaşı', description: 'Kadim strateji oyunu. Üçü yan yana getir, kazan.', component: <TicTacToe onBack={() => setSelectedGame(null)} /> },
         { id: 'rockpaperscissors', type: 'react', name: 'Taş-Kağıt-Makas', description: 'Kadim düelloda şansını ve zekanı sına.', component: <RockPaperScissors onBack={() => setSelectedGame(null)} /> },
