@@ -18,8 +18,8 @@ import ContactPage from './pages/ContactPage';
 import EfsaneFotograflar from './pages/EfsaneFotograflar';
 import FotografDetayPage from './pages/FotografDetayPage';
 import OlayEklePage from './pages/OlayEklePage';
-// YENİ SAYFAYI İMPORT ET
 import FotografEklePage from './pages/FotografEklePage';
+import EfsaneSarkilarPage from './pages/EfsaneSarkilarPage'; // YENİ SAYFAYI İMPORT ET
 
 const AppContent: React.FC = () => {
     const { girisYapildi } = useAuth();
@@ -63,8 +63,8 @@ const AppRoutes = () => {
                 <Route path="/efsane-fotograflar" element={<EfsaneFotograflar />} />
                 <Route path="/fotograf/:id" element={<FotografDetayPage />} />
                 <Route path="/iletisim" element={<ContactPage />} />
-                {/* YENİ ROTA */}
                 <Route path="/fotograf-ekle" element={<FotografEklePage />} />
+                <Route path="/efsane-sarkilar" element={<EfsaneSarkilarPage />} /> {/* YENİ ROTA */}
             </Routes>
         </AnimatePresence>
     );
