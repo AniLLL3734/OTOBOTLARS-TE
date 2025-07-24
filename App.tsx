@@ -19,7 +19,8 @@ import EfsaneFotograflar from './pages/EfsaneFotograflar';
 import FotografDetayPage from './pages/FotografDetayPage';
 import OlayEklePage from './pages/OlayEklePage';
 import FotografEklePage from './pages/FotografEklePage';
-import EfsaneSarkilarPage from './pages/EfsaneSarkilarPage'; // YENİ SAYFAYI İMPORT ET
+import EfsaneSarkilarPage from './pages/EfsaneSarkilarPage';
+import EfsaneVideolarPage from './pages/EfsaneVideolarPage'; // 1. YENİ SAYFAYI İMPORT ETTİK
 
 const AppContent: React.FC = () => {
     const { girisYapildi } = useAuth();
@@ -64,7 +65,8 @@ const AppRoutes = () => {
                 <Route path="/fotograf/:id" element={<FotografDetayPage />} />
                 <Route path="/iletisim" element={<ContactPage />} />
                 <Route path="/fotograf-ekle" element={<FotografEklePage />} />
-                <Route path="/efsane-sarkilar" element={<EfsaneSarkilarPage />} /> {/* YENİ ROTA */}
+                <Route path="/efsane-sarkilar" element={<EfsaneSarkilarPage />} />
+                <Route path="/video-kayitlari" element={<EfsaneVideolarPage />} /> {/* 2. YENİ ROTAYI EKLEDİK */}
             </Routes>
         </AnimatePresence>
     );

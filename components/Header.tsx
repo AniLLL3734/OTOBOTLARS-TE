@@ -9,6 +9,7 @@ const navLinks = [
     { name: 'Efsane Fotoğraflar', path: '/efsane-fotograflar' }, 
     { name: 'Efsane Şarkılar', path: '/efsane-sarkilar' }, // YENİ EKLENEN SATIR
     { name: 'Sohbet', path: '/sohbet' },
+     { name: 'Video Kayıtları', path: '/video-kayitlari' }, // YENİ EKLENEN SATIR
     { name: 'İletişim', path: '/iletisim' },
 ];
 
