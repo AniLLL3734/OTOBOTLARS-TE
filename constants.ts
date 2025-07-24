@@ -295,6 +295,41 @@ export const efsaneFotograflar: Fotograf[] = [
         aciklama: 'Her ekibin bir karargahı, her kalenin bir kapısı vardır. Bu, o kapının önünde toplanmış konseyin bir gece ansızın çekilmiş tarihi kanıtıdır. Parmaklıkların ardındaki sadık muhafız, gözlüklü neşeli stratejist ve gecenin sırlarına vakıf diğer üyeler... Ya bilinmeyen diyarlara açılan bir geçidi koruyorlardı ya da sadece sitenin çıkış kapısında "içeride mi kalsak, dışarı mı çıksak?" diye düşünüyorlardı. Hayatta bazen en önemli kararlar, en basit yerlerde verilir.',
         gorsel: '/images/galeri/ekip.jpg',
     },
+    {
+        id: 'fotograf-010',
+        baslik: 'Pusula ve Anafor: Saha Taraması',
+        tarih: 'Şehrin sırlarının en savunmasız olduğu, sokak lambalarının altındaki o kritik anlar.',
+        aciklama: 'Soldaki, kod adı "Pusula" (Ahmet). Görevi, sessizce gözlemlemek ve bıyıklarının ardında binlerce senaryoyu tartmaktır. Sağdaki ise "Anafor" (Anıl). Onun varlığı, en sakin anların bile her an bir aksiyona dönüşebileceğinin garantisidir. Ya evrenin kaderini değiştirecekler ya da sadece "eve hangi yoldan dönsek?" diye düşünüyorlar. Bir ajan için her karar, aynı ciddiyeti taşır.',
+        gorsel: '/images/galeri/ajanlar1.jpg', // KENDİ DOSYA ADINLA DEĞİŞTİR
+    },
+    {
+        id: 'fotograf-011',
+        baslik: 'Gizli İrtibat: Sinyal Bekleniyor',
+        tarih: 'Teknolojinin ve gerginliğin en üst seviyede olduğu, operasyondan saniyeler önce.',
+        aciklama: 'Bu, sıradan bir selfie değil. Bu, yüz tanıma sistemini atlatmak için düşman sunucularına gönderilen son biyometrik veridir. Ajan Pusula (Ahmet) ortamı güvenceye alırken, Ajan Anafor (Anıl) bağlantıyı kurar. Tabii bir ihtimal daha var: sadece ikisi de aynı anda ekrana sığmaya çalışıyor da olabilirler.',
+        gorsel: '/images/galeri/ajanlar2.jpg', // KENDİ DOSYA ADINLA DEĞİŞTİR
+    },
+    {
+        id: 'fotograf-012',
+        baslik: 'Resmi Dosya: Kod Adı OTOBOTLAR',
+        tarih: 'Merkeze gönderilen, operasyonun resmi başlangıç kanıtı.',
+        aciklama: 'Her efsanevi ortaklığın bir dosya fotoğrafı vardır. Ajan Pusula\'nın sarsılmaz sükuneti, Ajan Anafor\'un patlamaya hazır enerjisiyle birleşir. Onlar zıtlıkların uyumudur; düzen ve kaosun mükemmel dengesi. Bu bakışlar ya "hazırız" der ya da "gözümü kırpmadan önce fotoğrafı çek artık".',
+        gorsel: '/images/galeri/ajanlar3.jpg', // KENDİ DOSYA ADINLA DEĞİŞTİR
+    },
+    {
+        id: 'fotograf-013',
+        baslik: 'Son Hamle: Anafor\'un İknası',
+        tarih: 'Kelimelerin tükendiği, diplomasinin namlunun ucuna taşındığı o an.',
+        aciklama: 'Müzakereler sonuç vermediğinde ve Ajan Pusula’nın sabrı tükendiğinde, sahneye Ajan Anafor çıkar. Onun diplomasi anlayışı daha doğrudan ve genellikle oldukça... ikna edicidir. Bu hamle ya bir sonraki büyük olayı tetikleyecek ya da sadece deklanşör sesinin verdiği o tatmin edici histen ibaretti. Gizli operasyonlarda, niyet ve sonuç arasındaki çizgi her zaman bu kadar incedir.',
+        gorsel: '/images/galeri/ajanlar4.jpg', // KENDİ DOSYA ADINLA DEĞİŞTİR
+    },
+    {
+        id: 'fotograf-014',
+        baslik: 'Görevin Anatomisi: Rapor Anı',
+        tarih: 'Aksiyon bittiğinde, duman dağıldığında, geriye sadece analiz kaldığında.',
+        aciklama: 'Görev tamamlanmıştır. Ajan Anafor, güvenli bir hat (akıllı telefon) üzerinden merkeze raporunu iletirken, Ajan Pusula durum değerlendirmesi yapar. Tütün dumanı, geride bırakılan kaosun son kalıntısıdır. Ya da belki de sadece sigara molası verip bir sonraki görevin nerede olduğunu tartışıyorlardır. Ajanların dünyasında kesin olan tek şey belirsizliktir.',
+        gorsel: '/images/galeri/ajanlar5.jpg', // KENDİ DOSYA ADINLA DEĞİŞTİR
+    }
     // Buraya istediğiniz kadar fotoğraf ekleyebilirsiniz.
     // Yapı: { id, baslik, tarih, aciklama, gorsel }
 ];
